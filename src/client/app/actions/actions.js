@@ -1,4 +1,4 @@
-const ADD_TODO = 'ADD_TODO'
+export const ADD_TODO = 'ADD_TODO'
 
 export function addTodo(text) {
   return {
@@ -7,7 +7,7 @@ export function addTodo(text) {
   }
 }
 
-const TOGGLE_TODO = 'TOGGLE_TODO'
+export const TOGGLE_TODO = 'TOGGLE_TODO'
 
 export function toggleTodo(index) {
   return {
