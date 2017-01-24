@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server -d --hot --inline --progress --colors",
     "dev": "webpack -d --watch",
-    "build": "webpack -p",
+    "build": "webpack -p --config webpack.prod.config.js --progress",
+    "deploy": "npm run build && gh-pages -d src/client/dist -b gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "robbawebba",
