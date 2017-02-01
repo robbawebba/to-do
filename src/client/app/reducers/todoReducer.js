@@ -1,5 +1,7 @@
 import {
   ADD_TODO,
+  ADD_TODO_SUCCESS,
+  ADD_TODO_FAILURE,
   TOGGLE_TODO,
 } from '../actions/actions'
 
@@ -9,7 +11,7 @@ export default function todos(state = [], action) {
   console.log("BEFORE")
   let newArray
   switch (action.type) {
-    case ADD_TODO:
+    case ADD_TODO_SUCCESS:
       // Return a new array
       newArray = [
         ...state,
