@@ -14,7 +14,7 @@ export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS'
 export function addTodoSuccess(todoItem) {
   return {
     type: ADD_TODO_SUCCESS,
-    text: todoItem.text,
+    item: todoItem,
   }
 }
 
@@ -22,7 +22,7 @@ export const ADD_TODO_FAILURE = 'ADD_TODO_FAILURE'
 
 export function addTodoFailure(text, errorStatus, errorText) {
   return {
-    type: ADD_TODO_SUCCESS,
+    type: ADD_TODO_FAILURE,
     text,
     errorStatus,
     errorText,

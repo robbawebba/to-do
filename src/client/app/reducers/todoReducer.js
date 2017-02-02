@@ -5,28 +5,37 @@ import {
   TOGGLE_TODO,
 } from '../actions/actions'
 
-let newTodoId = 0
-export default function todos(state = [], action) {
-  console.log(action)
-  console.log("BEFORE")
-  let newArray
+export default function todos(state = {
+  isPosting: false,
+  items: [],
+}, action) {
+  let newItems
   switch (action.type) {
+    case ADD_TODO:
+      return Object.assign({}, state, {
+        isPosting: true,
+      })
     case ADD_TODO_SUCCESS:
       // Return a new array
-      newArray = [
-        ...state,
+      newItems = [
+        ...state.items,
         {
-          text: action.text,
-          id: newTodoId++,
-          completed: false,
+          text: action.item.text,
+          id: action.item.id,
+          completed: action.item.completed,
         },
       ]
-      console.log("HELLO in ADD")
-      return newArray
+      return Object.assign({}, state, {
+        isPosting: false,
+        items: newItems,
+      })
+    case ADD_TODO_FAILURE:
+      return Object.assign({}, state, {
+        isPosting: false,
+      })
     case TOGGLE_TODO:
-    console.log("HELLO in TOGGLE")
-      return state.map((todo, index) => {
-        if (index === action.index) {
+      return state.items.map((todo) => {
+        if (todo.id === action.item.id) {
           return Object.assign({}, todo, {
             completed: !todo.completed,
           })
@@ -34,7 +43,6 @@ export default function todos(state = [], action) {
         return todo
       })
     default:
-    console.log("HELLO in DEFAULT")
       return state
   }
 }
