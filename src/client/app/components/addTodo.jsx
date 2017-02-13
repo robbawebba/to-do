@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { createTodo } from '../actions/actions'
 
 const AddTodo = ({ dispatch }) => {
-  let input
+  let input // variable for referencing <input> element
 
   return (
     <div>

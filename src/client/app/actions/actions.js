@@ -31,15 +31,15 @@ export function addTodoFailure(text, errorStatus, errorText) {
 
 export function createTodo(text) {
   const endPoint = '/todos'
-  const data = new FormData()
-  data.append('text', text)
+  const data = {"text": text }
   return (dispatch) => {
     dispatch(addTodo(text))
     return fetch(process.env.API_HOST + endPoint,
       { method: 'POST',
         headers: {
-          'Content-Disposition': 'form-data'},
-        body: data,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       },
     ).then(checkStatus)
       .then(response => response.json())
