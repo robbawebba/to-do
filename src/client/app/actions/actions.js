@@ -52,16 +52,40 @@ export function createTodo(text) {
 
 export const TOGGLE_TODO = 'TOGGLE_TODO'
 
-export function toggleTodo(id) {
+export function toggleTodo(id, completed) {
+  const endPoint = `/todos/${id}`
+  const data = { completed }
+  return (dispatch) => {
+    dispatch(updateTodo(id))
+    return fetch(process.env.API_HOST + endPoint,
+      { method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      },
+    ).then(checkStatus)
+      .then(response => response.json())
+    .then(json => dispatch(updateTodoSuccess(json)))
+    .catch((error) => {
+      dispatch(updateTodoFailure(text, error.response.status, error.response.statusText))
+    })
+  }
+}
+}
+
+export const UPDATE_TODO = 'UPDATE_TODO'
+
+export function updateTodo(id) {
   return {
-    type: TOGGLE_TODO,
-    index,
+    type: UPDATE_TODO,
+    id,
   }
 }
 
 export const TOGGLE_TODO_SUCCESS = 'TOGGLE_TODO_SUCCESS'
 
-export function toggleTodoSuccess(id) {
+export function updateTodoSuccess(id) {
   return {
     type: TOGGLE_TODO,
     id,
@@ -70,7 +94,7 @@ export function toggleTodoSuccess(id) {
 
 export const TOGGLE_TODO_FAILURE = 'TOGGLE_TODO_FAILURE'
 
-export function toggleTodoFailure(id) {
+export function updateTodoFailure(id) {
   return {
     type: TOGGLE_TODO,
     id,

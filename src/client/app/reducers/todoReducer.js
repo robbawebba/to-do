@@ -17,12 +17,14 @@ export default function todos(state = {
       })
     case ADD_TODO_SUCCESS:
       // Return a new array
+      console.log(action.item)
       newItems = [
         ...state.items,
         {
           text: action.item.text,
-          id: action.item.id,
+          id: action.item._id,
           completed: action.item.completed,
+          lastUpdated: action.item.updated_at,
         },
       ]
       return Object.assign({}, state, {
