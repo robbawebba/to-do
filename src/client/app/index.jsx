@@ -18,7 +18,6 @@ const App = () => (
 )
 
 const store = createStore(appReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk, createLogger()));
-store.subscribe(() => { console.log(store.getState()) })
 
 render(
   <Provider store={store}>

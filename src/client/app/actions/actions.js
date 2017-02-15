@@ -50,11 +50,40 @@ export function createTodo(text) {
   }
 }
 
+export const UPDATE_TODO = 'UPDATE_TODO'
+
+export function updateTodo(id) {
+  return {
+    type: UPDATE_TODO,
+    id,
+  }
+}
+
+export const UPDATE_TODO_SUCCESS = 'UPDATE_TODO_SUCCESS'
+
+export function updateTodoSuccess(item) {
+  return {
+    type: UPDATE_TODO_SUCCESS,
+    item,
+  }
+}
+
+export const UPDATE_TODO_FAILURE = 'UPDATE_TODO_FAILURE'
+
+export function updateTodoFailure(id, errorStatus, errorText) {
+  return {
+    type: UPDATE_TODO_FAILURE,
+    id,
+    errorStatus,
+    errorText,
+  }
+}
+
 export const TOGGLE_TODO = 'TOGGLE_TODO'
 
 export function toggleTodo(id, completed) {
   const endPoint = `/todos/${id}`
-  const data = { completed }
+  const data = { completed: !completed }
   return (dispatch) => {
     dispatch(updateTodo(id))
     return fetch(process.env.API_HOST + endPoint,
@@ -68,36 +97,8 @@ export function toggleTodo(id, completed) {
       .then(response => response.json())
     .then(json => dispatch(updateTodoSuccess(json)))
     .catch((error) => {
-      dispatch(updateTodoFailure(text, error.response.status, error.response.statusText))
+      dispatch(updateTodoFailure(id, error.response.status, error.response.statusText))
     })
-  }
-}
-}
-
-export const UPDATE_TODO = 'UPDATE_TODO'
-
-export function updateTodo(id) {
-  return {
-    type: UPDATE_TODO,
-    id,
-  }
-}
-
-export const TOGGLE_TODO_SUCCESS = 'TOGGLE_TODO_SUCCESS'
-
-export function updateTodoSuccess(id) {
-  return {
-    type: TOGGLE_TODO,
-    id,
-  }
-}
-
-export const TOGGLE_TODO_FAILURE = 'TOGGLE_TODO_FAILURE'
-
-export function updateTodoFailure(id) {
-  return {
-    type: TOGGLE_TODO,
-    id,
   }
 }
 

@@ -2,7 +2,9 @@ import {
   ADD_TODO,
   ADD_TODO_SUCCESS,
   ADD_TODO_FAILURE,
-  TOGGLE_TODO,
+  UPDATE_TODO,
+  UPDATE_TODO_SUCCESS,
+  UPDATE_TODO_FAILURE,
 } from '../actions/actions'
 
 export default function todos(state = {
@@ -17,7 +19,6 @@ export default function todos(state = {
       })
     case ADD_TODO_SUCCESS:
       // Return a new array
-      console.log(action.item)
       newItems = [
         ...state.items,
         {
@@ -35,14 +36,26 @@ export default function todos(state = {
       return Object.assign({}, state, {
         isPosting: false,
       })
-    case TOGGLE_TODO:
-      return state.items.map((todo) => {
-        if (todo.id === action.item.id) {
+    case UPDATE_TODO:
+      return Object.assign({}, state, {
+        isPosting: true,
+      })
+    case UPDATE_TODO_SUCCESS:
+      newItems = state.items.map((todo) => {
+        if (todo.id === action.item._id) {
           return Object.assign({}, todo, {
-            completed: !todo.completed,
+            completed: action.item.completed,
           })
         }
         return todo
+      })
+      return Object.assign({}, state, {
+        isPosting: false,
+        items: newItems,
+      })
+    case UPDATE_TODO_FAILURE:
+      return Object.assign({}, state, {
+        isPosting: false,
       })
     default:
       return state

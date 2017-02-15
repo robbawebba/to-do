@@ -9,7 +9,7 @@ const TodoList = ({ todos, onTodoClick }) => (
       <Todo
         key={todo.id}
         {...todo}
-        onClick={() => onTodoClick(todo.id)}
+        onClick={() => onTodoClick(todo.id, todo.completed)}
       />,
     )}
   </ul>
@@ -37,8 +37,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTodoClick: (id) => {
-      dispatch(toggleTodo(id))
+    onTodoClick: (id, completed) => {
+      dispatch(toggleTodo(id, completed))
     },
   }
 }
