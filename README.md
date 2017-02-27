@@ -1,0 +1,1 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e5b86fa117614786ab114eb06461eaa1)](https://www.codacy.com/app/robbawebba/to-do?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=robbawebba/to-do&amp;utm_campaign=Badge_Grade)

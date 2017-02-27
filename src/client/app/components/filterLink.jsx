@@ -8,7 +8,7 @@ const FilterLink = ({ active, children, onClick }) => {
   }
 
   return (
-    <a 
+    <a
       href=""
       onClick={(e) => {
         e.preventDefault()
@@ -26,18 +26,14 @@ FilterLink.propTypes = {
   onClick: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    active: ownProps.filter === state.visibilityFilter,
-  }
-}
+const mapStateToProps = (state, ownProps) => ({
+  active: ownProps.filter === state.visibilityFilter,
+})
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onClick: () => {
-      dispatch(setVisibility(ownProps.filter))
-    },
-  }
-}
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onClick: () => {
+    dispatch(setVisibility(ownProps.filter))
+  },
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilterLink)

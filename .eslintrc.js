@@ -5,6 +5,7 @@ module.exports = {
         "max-len": [0, 120, 2, {ignoreComments: true}],
         "no-unescaped-entities": 0,
         "no-multiple-empty-lines": 0,
+        "arrow-body-style": ["error", "as-needed"]
     },
     "env": {
         "browser": true,

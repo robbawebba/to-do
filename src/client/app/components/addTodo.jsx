@@ -30,4 +30,8 @@ const AddTodo = ({ dispatch }) => {
   )
 }
 
+AddTodo.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+}
+
 export default connect()(AddTodo)
